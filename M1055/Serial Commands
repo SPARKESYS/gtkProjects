@@ -1,0 +1,28 @@
+#change write permission on USB
+sudo chmod o+rw /dev/ttyUSB#
+
+#list dial out
+id -Gn |grep dialout
+
+#list tty devices
+dmesg | grep tty
+
+#send Motor Go At Speed Command  8333 = 500RPM*2(mechanical) = 1000RPM
+echo -ne 'Q3000,0,0,40000,100000,1600,1000,1900,2000,50,1\r' > /dev/ttyUSB#
+
+#PID Motor Setup
+echo -ne '(500,1000,10000,100,0,0,100\r' > /dev/ttyUSB#
+
+
+#software Reset (stop Motor)
+echo -ne 'R\r' > /dev/ttyUSB0
+
+#Mini term
+python -m serial.tools.miniterm
+
+--- Available ports:
+---  1: /dev/ttyS0           'ttyS0'
+---  2: /dev/ttyUSB0         'FT232R USB UART' ****Haydon Kerk
+---  3: /dev/ttyUSB1         'USB-Serial Controller D' *****Roland Mill
+--- Enter port index or full name: 
+
