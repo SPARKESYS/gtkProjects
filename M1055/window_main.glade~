@@ -144,11 +144,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkSpinButton" id="spinbutton1">
+          <object class="GtkSpinButton" id="rpm_spbtn">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="adjustment">speed_adj</property>
             <property name="update_policy">if-valid</property>
+            <signal name="value-changed" handler="on_rpm_spbtn_value_changed" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">2</property>
@@ -157,10 +158,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkSpinButton" id="spinbutton2">
+          <object class="GtkSpinButton" id="time_spbtn">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="adjustment">time_adj</property>
+            <signal name="value-changed" handler="on_time_spbtn_value_changed" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">2</property>
