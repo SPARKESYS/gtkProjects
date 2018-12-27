@@ -32,7 +32,6 @@
     <property name="border_width">15</property>
     <property name="type">popup</property>
     <property name="title" translatable="yes">QST Control Panel</property>
-    <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="window_position">center-always</property>
     <property name="default_width">650</property>
@@ -382,7 +381,6 @@
     <property name="is_focus">True</property>
     <property name="border_width">15</property>
     <property name="type">popup</property>
-    <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="window_position">center-always</property>
     <property name="default_width">650</property>
