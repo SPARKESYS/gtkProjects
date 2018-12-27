@@ -22,16 +22,17 @@ GtkWidget       *window_main;
 GtkWidget	*window_debug;
 typedef struct
 {
-	GtkWidget *w_speed_value;//speed percentage update
-	GtkWidget *w_sbtn_button;
+	GtkWidget *w_rpm_label;//speed rpm update
+	GtkWidget *w_rpm_spbtn;
 	
-	GtkWidget *w_pos_limit;//stop position update
-	GtkWidget *w_pos_button;
+	GtkWidget *w_time_label;//run time update
+	GtkWidget *w_time_spbtn;
 
 
 
 }app_widgets;
-void on_start_button_clicked();
-void on_set_params_clicked();
+int on_start_button_clicked();
+
+int on_set_params_clicked();
 
 #endif
