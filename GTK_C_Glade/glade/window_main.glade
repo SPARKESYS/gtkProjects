@@ -45,23 +45,6 @@
         <property name="row_homogeneous">True</property>
         <property name="column_homogeneous">True</property>
         <child>
-          <object class="GtkButton" id="quit_button">
-            <property name="label">gtk-quit</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="relief">none</property>
-            <property name="use_stock">True</property>
-            <property name="image_position">bottom</property>
-            <property name="always_show_image">True</property>
-            <signal name="clicked" handler="gtk_main_quit" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">11</property>
-            <property name="top_attach">0</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkButton" id="start_button">
             <property name="label" translatable="yes">Start Test</property>
             <property name="use_action_appearance">True</property>
@@ -77,8 +60,8 @@
             <signal name="clicked" handler="on_start_button_clicked" swapped="no"/>
           </object>
           <packing>
-            <property name="left_attach">9</property>
-            <property name="top_attach">10</property>
+            <property name="left_attach">8</property>
+            <property name="top_attach">9</property>
             <property name="width">3</property>
             <property name="height">2</property>
           </packing>
@@ -182,26 +165,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="ready_img">
-            <property name="can_focus">False</property>
-            <property name="stock">gtk-ok</property>
-          </object>
-          <packing>
-            <property name="left_attach">8</property>
-            <property name="top_attach">10</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="ready">
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Ready</property>
-          </object>
-          <packing>
-            <property name="left_attach">8</property>
-            <property name="top_attach">11</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkButton" id="set_params">
             <property name="label" translatable="yes">Set Parameters</property>
             <property name="visible">True</property>
@@ -264,73 +227,41 @@
           </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkImage" id="ready_img">
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-ok</property>
+          </object>
+          <packing>
+            <property name="left_attach">7</property>
+            <property name="top_attach">9</property>
+          </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkLabel" id="ready">
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Ready</property>
+          </object>
+          <packing>
+            <property name="left_attach">7</property>
+            <property name="top_attach">10</property>
+          </packing>
         </child>
         <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
+          <object class="GtkButton" id="quit_button">
+            <property name="label">gtk-quit</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="relief">none</property>
+            <property name="use_stock">True</property>
+            <property name="image_position">bottom</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="gtk_main_quit" swapped="no"/>
+          </object>
+          <packing>
+            <property name="left_attach">10</property>
+            <property name="top_attach">0</property>
+          </packing>
         </child>
         <child>
           <placeholder/>
