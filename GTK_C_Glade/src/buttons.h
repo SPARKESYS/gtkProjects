@@ -24,15 +24,21 @@ typedef struct
 {
 	GtkWidget *w_rpm_label;//speed rpm update
 	GtkWidget *w_rpm_spbtn;
-	
+	GtkWidget *w_rpmEncoder;	
 	GtkWidget *w_time_label;//run time update
 	GtkWidget *w_time_spbtn;
 
 
 
 }app_widgets;
-int on_start_button_clicked();
+void * setPid(void *arg); 
+void getRpm(int rpm);
+int on_start_button_clicked (GtkButton *button, app_widgets *app_widgets);
+int  on_set_params_clicked (GtkButton * button, app_widgets *app_wdgts);
+void on_rpm_spbtn_value_changed (GtkButton *button, app_widgets *app_wdgts);
+void on_time_spbtn_value_changed (GtkButton *button, app_widgets *app_wdgts);
+void on_debug_btn_clicked (GtkButton *button, app_widgets *app_wdgts);
+void on_debug_back_clicked (GtkButton *button, app_widgets *app_wdgts);
 
-int on_set_params_clicked();
 
 #endif

@@ -7,73 +7,69 @@
 #include <stdlib.h>
 #include <wiringPi.h>
 #include <wiringSerial.h>
-
-
+#include <glib.h>
+#include <pthread.h>
+#include <unistd.h>
 
 #include "buttons.h"
+
+
+pthread_t tid[3]; 
+pthread_mutex_t lock; 
+
+int fd;
+char PID[] = "(500,1000,10000,100,0,0,100\r";
+char decel[] = "H2222,0,1000,1000,500,50,1\r";
+char motor[] = "Q8333,0,0,3000,5000,5000,5000,2000,1000,50,1\r";
+char Q[] = "Q";
+char motorParams[] = ",0,0,3200,5000,5000,5000,2000,1000,50,1\r";
+char serialRpm[100];
+char stop[] = "R\r";
+char encoder[] = "l\r";
 
 bool sys_ready_speed = false;
 bool sys_ready_pos = false;
 bool sys_armed = false;
 double rpm = 0; // stores integer read from spin button widget
 double runTime = 0;
+	
 
-int fd;
-char PID[] = "(500,1000,10000,100,0,0,100\r";
-char decel[] = "H2222,0,1000,1000,500,50,1\r";
-char Q[] = "Q";
-char motorParams[] = ",0,0,2800,5000,5000,5000,2000,1000,50,1\r";
-char serialRpm[100];
-char stop[] = "R\r";
-char encoder[] = "l\r";
+
 int i;
 ////////////////////////
-GMutex mutex_interface;
+void * setPid(void *arg) 
+{  
+	getRpm(rpm);
+	pthread_mutex_lock(&lock);
+	
+ 	if ((fd = serialOpen ("/dev/ttyUSB0", 57600)) < 0)
+  	{
+    	fprintf (stderr, "Unable to open serial device: %s\n", strerror (errno)) ;
+    	return NULL ;
+  	}
 
-gboolean update_gui(gpointer data) {
-  g_mutex_lock(&mutex_interface);
-  // update the GUI here:
-  gtk_button_set_label(button,"label");
-  // And read the GUI also here, before the mutex to be unlocked:
-  gchar * text = gtk_entry_get_text(GTK_ENTRY(entry));
-  g_mutex_unlock(&mutex_interface);
-
-  return FALSE;
-}
-
-gpointer threadcompute(gpointer data) {
-  int count = 0;
-
-  while(count <= 10000) {
-    printf("\ntest %d",count);
-    // sometimes update the GUI:
-    gdk_threads_add_idle(update_gui,data);
-    // or:
-    g_idle_add(update_gui,data);
-
-    count++;
-  }
-
-  return NULL;
+  	if (wiringPiSetup () == -1)
+  	{
+    	fprintf (stdout, "Unable to start wiringPi: %s\n", strerror (errno)) ;
+    	return NULL ;
+  	}
+  
+  	printf ("\nOut: %s: ", PID);
+  	fflush (stdout);
+  	serialPuts (fd, PID);
+  	delay (500);
+ 	printf ("\n") ;
+	return NULL;		
 }
 /////////////////
-void on_button_clicked(GtkButton * button, gpointer data) {
 
-    g_thread_new("thread",threadcompute,data);
-}
-
-
-
-
-
-
-
-
-void  getRpm(int rpm)//conver RPM to serial data and concatenate serial string for mtoro control
+void getRpm(int rpm)//conver RPM to serial data and concatenate serial string for mtoro control
 {
 	char rpmStr[50];
 	int rpmVal;
 	
+	pthread_mutex_lock(&lock);
+
 	strcpy(serialRpm, Q);
 	
 	rpmVal = (rpm *8.333);
@@ -84,93 +80,149 @@ void  getRpm(int rpm)//conver RPM to serial data and concatenate serial string f
 	strcat(serialRpm, motorParams);
 
 	printf("Motor:%s\n",serialRpm);
+	
+	pthread_mutex_unlock(&lock);
 
 
-		
 }
 
+void * encoderVal (void * arg)
+{
+	//gchar out_str[100] = {0}; // buffer for string
+
+	double rpmRead;
+	rpmRead= serialGetchar(fd);
+	fflush(stdout);
+	
+	
+	while (serialDataAvail (fd))
+	{
+      		serialPuts(fd,encoder);
+      		//g_snprintf(out_str, sizeof(out_str), "%.2f",rpmRead );
+		//gtk_label_set_text(GTK_LABEL(app_wdgts->w_rpmEncoder), out_str);
+		printf (" -> %3d\n", serialGetchar (fd)) ;
+      		fflush (stdout) ;
+	}
+
+	return NULL;
+}
+void * setMotor(void * arg)
+{
+	
+	int error;
+	
+	if (pthread_mutex_init(&lock, NULL)!=0)
+	{
+		printf("Mutex could not start\n");
+		return NULL;
+
+	}
+
+	
+	error = pthread_create(&(tid[2]),NULL, &encoderVal, NULL);
+	if (error != 0)
+	{	
+		printf("\n Thread cannot be created: [%s]", strerror(error));
+	}
+	
+
+	printf ("\nOut: %s: ", serialRpm);
+  	fflush (stdout);
+  	serialPuts (fd, serialRpm);
+ 	 	
+	printf("\nRun Time %0.f\n",runTime);
+  	delay(runTime);
+	printf ("\nOut: %s: ", decel) ;
+	fflush (stdout) ;
+	serialPuts (fd, decel) ;
+     
+	delay(5000);
+    
+  
+	printf ("\nOut: %s: ", stop) ;
+	fflush (stdout) ;
+	serialPuts (fd, stop) ;
+	delay(1000);
+   	pthread_join(tid[2],NULL);
+	pthread_mutex_destroy(&lock);
+
+	serialClose(fd);
+	return 0;
+
+}
 
 int on_start_button_clicked (GtkButton *button, app_widgets *app_widgets)
 {
+	int error;
+
+		
+	if (pthread_mutex_init(&lock, NULL)!=0)
+	{
+		printf("Mutex could not start\n");
+		return 1;
+
+	}
+
+
+	error = pthread_create(&(tid[0]),NULL, &setMotor, NULL);
+	if (error != 0)
+	{	
+		printf("\n Thread cannot be created: [%s]", strerror(error));
+	}
 	
-
-	printf("Motor Starting\n %s\n",serialRpm);
-	fflush(stdout);
-	delay(1000);
-
-	serialPuts(fd, serialRpm);
-	
-	delay(runTime);
-	fflush(stdout);
-	
-	serialPuts(fd,decel);
-	delay (runTime/2);
-	
-	fflush(stdout);
-	serialPuts (fd, stop);
-
-	serialClose(fd);
-
-
+	pthread_join(tid[0],NULL);
+	pthread_mutex_destroy(&lock);
 	return 0;
 
-
-
-
-
 }
+
 int  on_set_params_clicked (GtkButton * button, app_widgets *app_wdgts)
 {
-	printf("Set Params\n");
 	
-	getRpm(rpm);
-	
-	printf("%s\n",serialRpm);
-	
-	if ((fd = serialOpen ("/dev/ttyUSB0", 57600)) <0)
+	int error;
+
+		
+	if (pthread_mutex_init(&lock, NULL)!=0)
 	{
-		fprintf(stderr, "Unable to open serial device: %s\n",strerror (errno));
-		return 1;		
-	}
-	if (wiringPiSetup () == -1)
-	{
-		fprintf (stdout, "Unable to start wiringPi: %s\n", strerror (errno));
+		printf("Mutex could not start\n");
 		return 1;
+
 	}
 
-	fflush(stdout);
-	serialPuts (fd, PID);
-	
-	delay (3000);
-	fflush(stdout);
-	printf("PID Set\n");
 
+	error = pthread_create(&(tid[1]),NULL, &setPid, NULL);
+	if (error != 0)
+	{	
+		printf("\n Thread cannot be created: [%s]", strerror(error));
+	}
+	
+	
+	
+	pthread_join(tid[1],NULL);
+	pthread_mutex_destroy(&lock);
 	return 0;
 }
+
+
+
+
 void on_rpm_spbtn_value_changed (GtkButton *button, app_widgets *app_wdgts)
 {
-	//printf("speed button\n");
 	gchar out_str[100] = {0}; // buffer for string
 
 	rpm = gtk_spin_button_get_value(GTK_SPIN_BUTTON(app_wdgts->w_rpm_spbtn));
 	g_snprintf(out_str, sizeof(out_str), "%.2f", rpm);
 	gtk_label_set_text(GTK_LABEL(app_wdgts->w_rpm_label), out_str);
-	
-	
-
-	//printf("speed button\n");
 }
 
 void on_time_spbtn_value_changed (GtkButton *button, app_widgets *app_wdgts)
 {
-	
-	double runTime = 0;
 	gchar out_str[100] = {0}; // buffer for string
 
 	runTime = gtk_spin_button_get_value(GTK_SPIN_BUTTON(app_wdgts->w_time_spbtn));
 	g_snprintf(out_str, sizeof(out_str), "%.2f", runTime);
 	gtk_label_set_text(GTK_LABEL(app_wdgts->w_time_label), out_str);
-
+	runTime *=1000;
 	
 	//printf("position button \n");
 }
