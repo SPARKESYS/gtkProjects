@@ -108,16 +108,16 @@ int  on_set_params_clicked (GtkButton * button, app_widgets *app_wdgts)
 }
 void on_rpm_spbtn_value_changed (GtkButton *button, app_widgets *app_wdgts)
 {
-	printf("speed button\n");
+	//printf("speed button\n");
 	gchar out_str[100] = {0}; // buffer for string
 
 	rpm = gtk_spin_button_get_value(GTK_SPIN_BUTTON(app_wdgts->w_rpm_spbtn));
 	g_snprintf(out_str, sizeof(out_str), "%.2f", rpm);
 	gtk_label_set_text(GTK_LABEL(app_wdgts->w_rpm_label), out_str);
-
+	
 	
 
-	printf("speed button\n");
+	//printf("speed button\n");
 }
 
 void on_time_spbtn_value_changed (GtkButton *button, app_widgets *app_wdgts)
@@ -131,7 +131,7 @@ void on_time_spbtn_value_changed (GtkButton *button, app_widgets *app_wdgts)
 	gtk_label_set_text(GTK_LABEL(app_wdgts->w_time_label), out_str);
 
 	
-	printf("position button \n");
+	//printf("position button \n");
 }
 
 void on_debug_btn_clicked (GtkButton *button, app_widgets *app_wdgts)
