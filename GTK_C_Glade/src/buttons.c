@@ -27,6 +27,47 @@ char serialRpm[100];
 char stop[] = "R\r";
 char encoder[] = "l\r";
 int i;
+////////////////////////
+GMutex mutex_interface;
+
+gboolean update_gui(gpointer data) {
+  g_mutex_lock(&mutex_interface);
+  // update the GUI here:
+  gtk_button_set_label(button,"label");
+  // And read the GUI also here, before the mutex to be unlocked:
+  gchar * text = gtk_entry_get_text(GTK_ENTRY(entry));
+  g_mutex_unlock(&mutex_interface);
+
+  return FALSE;
+}
+
+gpointer threadcompute(gpointer data) {
+  int count = 0;
+
+  while(count <= 10000) {
+    printf("\ntest %d",count);
+    // sometimes update the GUI:
+    gdk_threads_add_idle(update_gui,data);
+    // or:
+    g_idle_add(update_gui,data);
+
+    count++;
+  }
+
+  return NULL;
+}
+/////////////////
+void on_button_clicked(GtkButton * button, gpointer data) {
+
+    g_thread_new("thread",threadcompute,data);
+}
+
+
+
+
+
+
+
 
 void  getRpm(int rpm)//conver RPM to serial data and concatenate serial string for mtoro control
 {
