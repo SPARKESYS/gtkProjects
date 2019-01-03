@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.22.0 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkAdjustment" id="pos_adj">
@@ -34,7 +34,6 @@
     <property name="type">popup</property>
     <property name="title" translatable="yes">QST Control Panel</property>
     <property name="modal">True</property>
-    <property name="window_position">center-always</property>
     <property name="default_width">800</property>
     <property name="default_height">600</property>
     <property name="gravity">center</property>
@@ -61,10 +60,9 @@
             <signal name="clicked" handler="on_start_button_clicked" swapped="no"/>
           </object>
           <packing>
-            <property name="left_attach">8</property>
-            <property name="top_attach">9</property>
+            <property name="left_attach">6</property>
+            <property name="top_attach">0</property>
             <property name="width">3</property>
-            <property name="height">2</property>
           </packing>
         </child>
         <child>
@@ -75,8 +73,8 @@
             <property name="ellipsize">end</property>
           </object>
           <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">3</property>
+            <property name="left_attach">7</property>
+            <property name="top_attach">5</property>
             <property name="width">2</property>
           </packing>
         </child>
@@ -87,31 +85,9 @@
             <property name="label" translatable="yes">PSI X</property>
           </object>
           <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">2</property>
+            <property name="left_attach">7</property>
+            <property name="top_attach">4</property>
             <property name="width">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="PSI_X">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">0.0</property>
-          </object>
-          <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="PSI_Y">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">0.0</property>
-          </object>
-          <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">3</property>
           </packing>
         </child>
         <child>
@@ -121,7 +97,7 @@
             <property name="label" translatable="yes">Control Panel</property>
           </object>
           <packing>
-            <property name="left_attach">5</property>
+            <property name="left_attach">4</property>
             <property name="top_attach">0</property>
             <property name="width">2</property>
           </packing>
@@ -136,7 +112,7 @@
           </object>
           <packing>
             <property name="left_attach">2</property>
-            <property name="top_attach">5</property>
+            <property name="top_attach">3</property>
             <property name="width">2</property>
           </packing>
         </child>
@@ -150,7 +126,7 @@
           </object>
           <packing>
             <property name="left_attach">2</property>
-            <property name="top_attach">6</property>
+            <property name="top_attach">4</property>
             <property name="width">2</property>
           </packing>
         </child>
@@ -162,7 +138,7 @@
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">6</property>
+            <property name="top_attach">4</property>
             <property name="width">2</property>
           </packing>
         </child>
@@ -176,7 +152,7 @@
           </object>
           <packing>
             <property name="left_attach">2</property>
-            <property name="top_attach">8</property>
+            <property name="top_attach">0</property>
             <property name="width">2</property>
           </packing>
         </child>
@@ -188,7 +164,7 @@
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">5</property>
+            <property name="top_attach">3</property>
             <property name="width">2</property>
           </packing>
         </child>
@@ -203,48 +179,6 @@
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="rpm_label">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">-</property>
-          </object>
-          <packing>
-            <property name="left_attach">4</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="time_label">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">-</property>
-          </object>
-          <packing>
-            <property name="left_attach">4</property>
-            <property name="top_attach">6</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkImage" id="ready_img">
-            <property name="can_focus">False</property>
-            <property name="stock">gtk-ok</property>
-          </object>
-          <packing>
-            <property name="left_attach">7</property>
-            <property name="top_attach">9</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="ready">
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Ready</property>
-          </object>
-          <packing>
-            <property name="left_attach">7</property>
-            <property name="top_attach">10</property>
           </packing>
         </child>
         <child>
@@ -265,14 +199,59 @@
           </packing>
         </child>
         <child>
+          <object class="GtkLabel" id="rpm_label">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">-</property>
+          </object>
+          <packing>
+            <property name="left_attach">4</property>
+            <property name="top_attach">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="time_label">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">-</property>
+          </object>
+          <packing>
+            <property name="left_attach">4</property>
+            <property name="top_attach">4</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkLabel" id="rpm">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">RPM</property>
           </object>
           <packing>
-            <property name="left_attach">4</property>
-            <property name="top_attach">2</property>
+            <property name="left_attach">7</property>
+            <property name="top_attach">3</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="PSI_X">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">0.0</property>
+          </object>
+          <packing>
+            <property name="left_attach">9</property>
+            <property name="top_attach">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="PSI_Y">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">0.0</property>
+          </object>
+          <packing>
+            <property name="left_attach">9</property>
+            <property name="top_attach">5</property>
           </packing>
         </child>
         <child>
@@ -282,51 +261,72 @@
             <property name="label" translatable="yes">-</property>
           </object>
           <packing>
-            <property name="left_attach">5</property>
-            <property name="top_attach">2</property>
+            <property name="left_attach">9</property>
+            <property name="top_attach">3</property>
           </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkImage" id="ready_img">
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-ok</property>
+          </object>
+          <packing>
+            <property name="left_attach">9</property>
+            <property name="top_attach">0</property>
+          </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkLabel" id="ready">
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Ready</property>
+          </object>
+          <packing>
+            <property name="left_attach">7</property>
+            <property name="top_attach">1</property>
+          </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Test Parameters</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">2</property>
+            <property name="width">3</property>
+          </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">6</property>
+            <property name="width">11</property>
+          </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkImage" id="PSI_X_OPEN">
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-media-record</property>
+          </object>
+          <packing>
+            <property name="left_attach">10</property>
+            <property name="top_attach">4</property>
+          </packing>
         </child>
         <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
+          <object class="GtkImage" id="PSI_Y_OPEN">
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-media-record</property>
+          </object>
+          <packing>
+            <property name="left_attach">10</property>
+            <property name="top_attach">5</property>
+          </packing>
         </child>
         <child>
           <placeholder/>
@@ -554,6 +554,9 @@
           <placeholder/>
         </child>
       </object>
+    </child>
+    <child type="titlebar">
+      <placeholder/>
     </child>
   </object>
   <object class="GtkWindow" id="window_debug">
@@ -1020,6 +1023,9 @@
           <placeholder/>
         </child>
       </object>
+    </child>
+    <child type="titlebar">
+      <placeholder/>
     </child>
   </object>
 </interface>
