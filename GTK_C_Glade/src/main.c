@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 	widgets->w_time_spbtn = GTK_WIDGET(gtk_builder_get_object(builder, "time_spbtn"));
 	widgets->w_rpm_label = GTK_WIDGET(gtk_builder_get_object(builder, "rpm_label"));
 	widgets->w_time_label = GTK_WIDGET(gtk_builder_get_object(builder, "time_label"));
-
+	widgets->w_rpmEncoder = GTK_WIDGET(gtk_builder_get_object(builder, "rpmEncoder"));
 	gtk_builder_connect_signals(builder, widgets);
 	g_object_unref(builder);
 	gtk_widget_show(window_main);                
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 		
 	gtk_main();
 	g_slice_free(app_widgets, widgets);
-	
+
 	return 0;
 
 
