@@ -31,11 +31,12 @@
     <property name="has_focus">True</property>
     <property name="is_focus">True</property>
     <property name="border_width">15</property>
-    <property name="type">popup</property>
     <property name="title" translatable="yes">QST Control Panel</property>
     <property name="modal">True</property>
+    <property name="window_position">center</property>
     <property name="default_width">800</property>
     <property name="default_height">600</property>
+    <property name="type_hint">menu</property>
     <property name="gravity">center</property>
     <signal name="destroy" handler="on_window_main_destroy" swapped="no"/>
     <child>
