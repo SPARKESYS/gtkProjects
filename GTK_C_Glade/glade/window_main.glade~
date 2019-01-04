@@ -34,7 +34,7 @@
     <property name="title" translatable="yes">QST Control Panel</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
-    <property name="default_width">800</property>
+    <property name="default_width">798</property>
     <property name="default_height">600</property>
     <property name="type_hint">menu</property>
     <property name="gravity">center</property>
@@ -48,14 +48,13 @@
         <child>
           <object class="GtkButton" id="start_button">
             <property name="label" translatable="yes">Start Test</property>
-            <property name="width_request">210</property>
-            <property name="height_request">42</property>
+            <property name="width_request">140</property>
+            <property name="height_request">40</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="margin_left">4</property>
-            <property name="margin_top">4</property>
-            <property name="margin_bottom">4</property>
+            <property name="margin_top">5</property>
+            <property name="margin_bottom">5</property>
             <property name="relief">half</property>
             <property name="use_underline">True</property>
             <signal name="clicked" handler="on_start_button_clicked" swapped="no"/>
@@ -63,7 +62,7 @@
           <packing>
             <property name="left_attach">6</property>
             <property name="top_attach">0</property>
-            <property name="width">3</property>
+            <property name="width">2</property>
           </packing>
         </child>
         <child>
@@ -146,10 +145,12 @@
         <child>
           <object class="GtkButton" id="set_params">
             <property name="label" translatable="yes">Set Parameters</property>
-            <property name="height_request">42</property>
+            <property name="height_request">40</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="margin_top">5</property>
+            <property name="margin_bottom">5</property>
             <property name="relief">half</property>
             <signal name="clicked" handler="on_set_params_clicked" swapped="no"/>
           </object>
@@ -174,31 +175,18 @@
         <child>
           <object class="GtkButton" id="debug_btn">
             <property name="label" translatable="yes">Debug</property>
+            <property name="width_request">70</property>
+            <property name="height_request">40</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="margin_top">5</property>
+            <property name="margin_bottom">5</property>
             <property name="relief">half</property>
             <signal name="clicked" handler="on_debug_btn_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="quit_button">
-            <property name="label">gtk-quit</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="relief">half</property>
-            <property name="use_stock">True</property>
-            <property name="image_position">bottom</property>
-            <property name="always_show_image">True</property>
-            <signal name="clicked" handler="gtk_main_quit" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">10</property>
             <property name="top_attach">0</property>
           </packing>
         </child>
@@ -237,39 +225,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="PSI_X">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">0.0</property>
-          </object>
-          <packing>
-            <property name="left_attach">9</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="PSI_Y">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">0.0</property>
-          </object>
-          <packing>
-            <property name="left_attach">9</property>
-            <property name="top_attach">6</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="rpmEncoder">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">-</property>
-          </object>
-          <packing>
-            <property name="left_attach">9</property>
-            <property name="top_attach">4</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -289,7 +244,104 @@
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">7</property>
+            <property name="width">10</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">2</property>
             <property name="width">11</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="start_aquisition">
+            <property name="label" translatable="yes">Start Aquisition</property>
+            <property name="width_request">140</property>
+            <property name="height_request">42</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin_top">4</property>
+            <property name="margin_bottom">4</property>
+            <signal name="clicked" handler="on_start_aquisition_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="left_attach">7</property>
+            <property name="top_attach">3</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="label" translatable="yes">Stop</property>
+            <property name="width_request">140</property>
+            <property name="height_request">40</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin_top">5</property>
+            <property name="margin_bottom">5</property>
+          </object>
+          <packing>
+            <property name="left_attach">6</property>
+            <property name="top_attach">1</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="run_img">
+            <property name="width_request">70</property>
+            <property name="height_request">50</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-media-record</property>
+          </object>
+          <packing>
+            <property name="left_attach">5</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="ready_img">
+            <property name="width_request">70</property>
+            <property name="height_request">50</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-apply</property>
+          </object>
+          <packing>
+            <property name="left_attach">4</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="quit_button">
+            <property name="label">gtk-quit</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="relief">half</property>
+            <property name="use_stock">True</property>
+            <property name="image_position">bottom</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="gtk_main_quit" swapped="no"/>
+          </object>
+          <packing>
+            <property name="left_attach">10</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="ready">
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Ready</property>
+          </object>
+          <packing>
+            <property name="left_attach">10</property>
+            <property name="top_attach">4</property>
           </packing>
         </child>
         <child>
@@ -313,184 +365,220 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="ready">
+          <object class="GtkLabel" id="PSI_Y">
+            <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Ready</property>
+            <property name="label" translatable="yes">0.0</property>
           </object>
           <packing>
-            <property name="left_attach">10</property>
+            <property name="left_attach">9</property>
+            <property name="top_attach">6</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="PSI_X">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">0.0</property>
+          </object>
+          <packing>
+            <property name="left_attach">9</property>
+            <property name="top_attach">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="rpmEncoder">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">-</property>
+          </object>
+          <packing>
+            <property name="left_attach">9</property>
             <property name="top_attach">4</property>
           </packing>
         </child>
         <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">2</property>
-            <property name="width">11</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkButton" id="start_aquisition">
-            <property name="label" translatable="yes">Start Aquisition</property>
-            <property name="height_request">42</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_start_aquisition_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">7</property>
-            <property name="top_attach">3</property>
-            <property name="width">2</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkFixed">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">8</property>
-            <property name="width">11</property>
-            <property name="height">3</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkFixed">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">1</property>
-            <property name="width">2</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkFixed">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">5</property>
-            <property name="top_attach">3</property>
-            <property name="width">2</property>
-            <property name="height">4</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkButton">
-            <property name="label" translatable="yes">Stop</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">6</property>
-            <property name="top_attach">1</property>
-            <property name="width">3</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkFixed">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">9</property>
-            <property name="top_attach">1</property>
-            <property name="width">2</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkFixed">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">9</property>
-            <property name="top_attach">3</property>
-            <property name="width">2</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkFixed">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">4</property>
-            <property name="top_attach">3</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkFixed">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">3</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkFixed">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">6</property>
-            <property name="width">5</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkFixed">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">0</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkImage" id="ready_img">
-            <property name="width_request">100</property>
-            <property name="height_request">80</property>
-            <property name="can_focus">False</property>
-            <property name="stock">gtk-apply</property>
-          </object>
-          <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">1</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkFixed">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">3</property>
-            <property name="top_attach">1</property>
-            <property name="width">3</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkImage" id="run_img">
-            <property name="can_focus">False</property>
-            <property name="stock">gtk-media-record</property>
-          </object>
-          <packing>
-            <property name="left_attach">9</property>
-            <property name="top_attach">0</property>
-          </packing>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
     </child>
