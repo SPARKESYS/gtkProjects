@@ -31,7 +31,6 @@
     <property name="has_focus">True</property>
     <property name="is_focus">True</property>
     <property name="border_width">15</property>
-    <property name="title" translatable="yes">QST Control Panel</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
     <property name="default_width">798</property>
