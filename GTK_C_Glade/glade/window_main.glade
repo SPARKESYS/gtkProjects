@@ -399,7 +399,6 @@
         </child>
         <child>
           <object class="GtkLabel" id="ready_label">
-            <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Ready</property>
           </object>
